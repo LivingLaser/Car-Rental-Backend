@@ -12,11 +12,11 @@ import com.main.crs.entity.Car;
 
 public interface CarRepo extends JpaRepository<Car, Integer> {
 	
-	@Query(value = "select * from car order by RAND() limit 6", nativeQuery = true)
+	@Query(value = Queries.RANDOM_CARS, nativeQuery = true)
 	List<Car> findByRandom();
 	Page<Car> findByModelNameContaining(String keyword, Pageable pageable);
 	
-	@Query(value = "SELECT c FROM Car c WHERE c.mileage <= :mileage AND c.seatCapacity <= :seatCapacity AND c.bootSpace <= :bootSpace AND c.rentPrice <= :rentPrice")
+	@Query(value = Queries.FILTERED_CARS)
 	Page<Car> findByFilter(@Param("mileage") String mileage, @Param("seatCapacity") String seatCapacity, @Param("bootSpace") String bootSpace, @Param("rentPrice") String rentPrice, Pageable pageable);
 
 }
