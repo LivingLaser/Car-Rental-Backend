@@ -28,6 +28,7 @@ public class UserDto {
 	private String phone;
 	
 	@NotBlank(message = "Address must not be empty")
+	@Pattern(regexp = "^(?!.*<[^>]+>).*$", message = "Enter a valid address")
 	private String address;
 	
 	@NotBlank(message = "Pincode must not be empty")
@@ -35,7 +36,7 @@ public class UserDto {
 	private String pincode;
 	
 	@NotBlank(message = "Password must not be empty")
-	@Size(min = 6, max = 10, message = "Password must be between 6-10 characters")
+	@Size(min = 6, max = 13, message = "Password must be between 6-13 characters")
 	private String password;
 	private RoleDto role;
 	

@@ -97,7 +97,6 @@ public class UserServiceImpl implements UserService {
 		userResponse.setPageContent(userDtos);
 		userResponse.setPageNumber(pages.getNumber());
 		userResponse.setPageSize(pages.getSize());
-		userResponse.setTotalElements(pages.getTotalElements());
 		userResponse.setTotalPages(pages.getTotalPages());
 		userResponse.setIsFirstPage(pages.isFirst());
 		userResponse.setIsLastPage(pages.isLast());
@@ -118,7 +117,6 @@ public class UserServiceImpl implements UserService {
 		userResponse.setPageContent(userDtos);
 		userResponse.setPageNumber(pages.getNumber());
 		userResponse.setPageSize(pages.getSize());
-		userResponse.setTotalElements(pages.getTotalElements());
 		userResponse.setTotalPages(pages.getTotalPages());
 		userResponse.setIsFirstPage(pages.isFirst());
 		userResponse.setIsLastPage(pages.isLast());

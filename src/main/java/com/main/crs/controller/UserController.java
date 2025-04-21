@@ -66,7 +66,7 @@ public class UserController {
 	public ResponseEntity<UserResponse> getAllUsers(
 			@RequestParam(defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
 			@RequestParam(defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,
-			@RequestParam(defaultValue = AppConstants.SORT_BY, required = false) String sortBy) {
+			@RequestParam(defaultValue = AppConstants.USER_SORT_BY, required = false) String sortBy) {
 		UserResponse userResponse = userService.getAllUsers(pageNumber, pageSize, sortBy);
 		return new ResponseEntity<>(userResponse, HttpStatus.OK);
 	}
@@ -75,7 +75,7 @@ public class UserController {
 	public ResponseEntity<UserResponse> getAllEmployees(
 			@RequestParam(defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
 			@RequestParam(defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,
-			@RequestParam(defaultValue = AppConstants.SORT_BY, required = false) String sortBy) {
+			@RequestParam(defaultValue = AppConstants.USER_SORT_BY, required = false) String sortBy) {
 		UserResponse userResponse = userService.getAllEmployees(pageNumber, pageSize, sortBy);
 		return new ResponseEntity<>(userResponse, HttpStatus.OK);
 	}
