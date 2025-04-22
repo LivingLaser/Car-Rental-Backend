@@ -18,5 +18,29 @@ public interface CarRepo extends JpaRepository<Car, Integer> {
 	
 	@Query(value = Queries.FILTERED_CARS)
 	Page<Car> findByFilter(@Param("mileage") String mileage, @Param("seatCapacity") String seatCapacity, @Param("bootSpace") String bootSpace, @Param("rentPrice") String rentPrice, Pageable pageable);
+	
+	@Query(value = Queries.MAX_MILEAGE, nativeQuery = true)
+	Integer findMaxMileage();
+	
+	@Query(value = Queries.MIN_MILEAGE, nativeQuery = true)
+	Integer findMinMileage();
+	
+	@Query(value = Queries.MAX_SEAT_CAPACITY, nativeQuery = true)
+	Integer findMaxSeatCapacity();
+	
+	@Query(value = Queries.MIN_SEAT_CAPACITY, nativeQuery = true)
+	Integer findMinSeatCapacity();
+	
+	@Query(value = Queries.MAX_BOOT_SPACE, nativeQuery = true)
+	Integer findMaxBootSpace();
+	
+	@Query(value = Queries.MIN_BOOT_SPACE, nativeQuery = true)
+	Integer findMinBootSpace();
+	
+	@Query(value = Queries.MAX_RENT_PRICE, nativeQuery = true)
+	Integer findMaxRentPrice();
+	
+	@Query(value = Queries.MIN_RENT_PRICE, nativeQuery = true)
+	Integer findMinRentPrice();
 
 }

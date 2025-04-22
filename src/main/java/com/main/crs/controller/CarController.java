@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.main.crs.config.AppConstants;
 import com.main.crs.dto.CarDto;
 import com.main.crs.payload.ApiResponse;
+import com.main.crs.payload.CarFilterRequest;
 import com.main.crs.payload.CarResponse;
 import com.main.crs.service.CarService;
 import com.main.crs.service.FileService;
@@ -90,6 +91,12 @@ public class CarController {
 			@RequestParam(defaultValue = AppConstants.CAR_SORT_BY, required = false) String sortBy) {
 		CarResponse carResponse = carService.getByFilter(mileage, seatCapacity, bootSpace, rentPrice, pageNumber, pageSize, sortBy);
 		return new ResponseEntity<>(carResponse, HttpStatus.OK);
+	}
+	
+	@GetMapping("/filter_values")
+	public ResponseEntity<CarFilterRequest> getFilterValues() {
+		CarFilterRequest carFilterRequest = carService.getFilterValues();
+		return new ResponseEntity<>(carFilterRequest, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{modelId}")

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.main.crs.dto.CarDto;
 import com.main.crs.entity.Car;
 import com.main.crs.exception.ResourceNotFoundException;
+import com.main.crs.payload.CarFilterRequest;
 import com.main.crs.payload.CarResponse;
 import com.main.crs.repository.CarRepo;
 import com.main.crs.service.CarService;
@@ -120,6 +121,20 @@ public class CarServiceImpl implements CarService {
 		carResponse.setIsLastPage(pages.isLast());
 		
 		return carResponse;
+	}
+
+	@Override
+	public CarFilterRequest getFilterValues() {
+		CarFilterRequest carFilterRequest = new CarFilterRequest();
+		carFilterRequest.setMaxMileage(carRepo.findMaxMileage());
+		carFilterRequest.setMinMileage(carRepo.findMinMileage());
+		carFilterRequest.setMaxSeatCapacity(carRepo.findMaxSeatCapacity());
+		carFilterRequest.setMinSeatCapacity(carRepo.findMinSeatCapacity());
+		carFilterRequest.setMaxBootSpace(carRepo.findMaxBootSpace());
+		carFilterRequest.setMinBootSpace(carRepo.findMinBootSpace());
+		carFilterRequest.setMaxRentPrice(carRepo.findMaxRentPrice());
+		carFilterRequest.setMinRentPrice(carRepo.findMinRentPrice());
+		return carFilterRequest;
 	}
 
 	@Override
