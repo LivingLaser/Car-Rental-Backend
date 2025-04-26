@@ -16,7 +16,7 @@ public interface CarRepo extends JpaRepository<Car, Integer> {
 	List<Car> findByRandom();
 	Page<Car> findByModelNameContaining(String keyword, Pageable pageable);
 	
-	@Query(value = Queries.FILTERED_CARS)
+	@Query(value = Queries.FILTERED_CARS, nativeQuery = true)
 	Page<Car> findByFilter(@Param("mileage") String mileage, @Param("seatCapacity") String seatCapacity, @Param("bootSpace") String bootSpace, @Param("rentPrice") String rentPrice, Pageable pageable);
 	
 	@Query(value = Queries.MAX_MILEAGE, nativeQuery = true)

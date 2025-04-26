@@ -88,7 +88,7 @@ public class CarController {
 			@RequestParam String seatCapacity, @RequestParam String bootSpace, @RequestParam String rentPrice,
 			@RequestParam(defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
 			@RequestParam(defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,
-			@RequestParam(defaultValue = AppConstants.CAR_SORT_BY, required = false) String sortBy) {
+			@RequestParam(defaultValue = AppConstants.CAR_SORT_BY_NATIVE, required = false) String sortBy) {
 		CarResponse carResponse = carService.getByFilter(mileage, seatCapacity, bootSpace, rentPrice, pageNumber, pageSize, sortBy);
 		return new ResponseEntity<>(carResponse, HttpStatus.OK);
 	}

@@ -11,6 +11,7 @@ public interface AppConstants {
 	String PAGE_SIZE = "10";
 	String USER_SORT_BY = "name";
 	String CAR_SORT_BY = "modelName";
+	String CAR_SORT_BY_NATIVE = "model_name";
 	String PATH = new File("src/main/resources/static/images/").getAbsolutePath();
 
 }
