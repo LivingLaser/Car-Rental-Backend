@@ -9,6 +9,7 @@ public interface UserService {
 	UserDto loginUser(String email, String password);
 	UserDto registerEmployee(UserDto userDto);
 	UserDto loginEmployee(String email, String password);
+	UserDto loginAdmin(String email, String password);
 	UserDto getUserById(Integer userId);
 	UserDto updateProfile(UserDto userDto, Integer userId);
 	UserResponse getAllUsers(Integer pageNumber, Integer pageSize, String sortBy);

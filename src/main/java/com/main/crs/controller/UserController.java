@@ -32,7 +32,7 @@ public class UserController {
 		return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/login")
+	@PostMapping("/login")
 	public ResponseEntity<UserDto> loginUser(@RequestParam String email, @RequestParam String password) {
 		UserDto loggedUser = userService.loginUser(email, password);
 		return new ResponseEntity<>(loggedUser, HttpStatus.OK);
@@ -44,10 +44,16 @@ public class UserController {
 		return new ResponseEntity<>(createdEmployee, HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/emp_login")
+	@PostMapping("/emp_login")
 	public ResponseEntity<UserDto> loginEmployee(@RequestParam String email, @RequestParam String password) {
 		UserDto loggedEmployee = userService.loginEmployee(email, password);
 		return new ResponseEntity<>(loggedEmployee, HttpStatus.OK);
+	}
+	
+	@PostMapping("/admin_login")
+	public ResponseEntity<UserDto> loginAdmin(@RequestParam String email, @RequestParam String password) {
+		UserDto loggedAdmin = userService.loginAdmin(email, password);
+		return new ResponseEntity<>(loggedAdmin, HttpStatus.OK);
 	}
 	
 	@GetMapping("/{userId}")

@@ -66,6 +66,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public UserDto loginAdmin(String email, String password) {
+		Role role = roleRepo.findById(AppConstants.USER_ADMIN).orElse(null);
+		User admin = userRepo.findByEmailAndPasswordAndRole(email, password, role);
+		return modelMapper.map(admin, UserDto.class);
+	}
+
+	@Override
 	public UserDto getUserById(Integer userId) {
 		User user = userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "ID", userId));
 		return modelMapper.map(user, UserDto.class);
