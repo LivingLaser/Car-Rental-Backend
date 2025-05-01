@@ -33,7 +33,7 @@ public class CarVariantController {
 		return new ResponseEntity<>(createdVariant, HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/reg/{registration}")
+	@GetMapping("/{registration}")
 	public ResponseEntity<CarVariantDto> getVariantById(@PathVariable String registration) {
 		CarVariantDto carVariantDto = carVariantService.getVariantById(registration);
 		return new ResponseEntity<>(carVariantDto, HttpStatus.OK);
@@ -45,7 +45,7 @@ public class CarVariantController {
 		return new ResponseEntity<>(updatedVariant, HttpStatus.OK);
 	}
 	
-	@GetMapping("/{modelId}")
+	@GetMapping("/car/{modelId}")
 	public ResponseEntity<List<CarVariantDto>> getVariantsByModel(@PathVariable Integer modelId) {
 		List<CarVariantDto> carVariantDtos = carVariantService.getVariantsByCar(modelId);
 		return new ResponseEntity<>(carVariantDtos, HttpStatus.OK);
@@ -55,6 +55,12 @@ public class CarVariantController {
 	public ResponseEntity<ApiResponse> removeCarVariant(@PathVariable String registration) {
 		carVariantService.removeCarVariant(registration);
 		return new ResponseEntity<>(new ApiResponse("Variant Removed", true), HttpStatus.OK);
+	}
+	
+	@GetMapping("/clear")
+	public ResponseEntity<ApiResponse> clearCarVariants() {
+		carVariantService.clearCarVariants();
+		return new ResponseEntity<>(new ApiResponse("Variants Cleared", true), HttpStatus.OK);
 	}
 
 }

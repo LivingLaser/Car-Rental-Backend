@@ -1,8 +1,13 @@
 package com.main.crs.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,12 +16,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.main.crs.config.AppConstants;
 import com.main.crs.dto.UserDto;
 import com.main.crs.payload.UserResponse;
+import com.main.crs.service.FileService;
 import com.main.crs.service.UserService;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 @RestController
@@ -25,6 +33,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private FileService fileService;
 	
 	@PostMapping("/register")
 	public ResponseEntity<UserDto> registerUser(@Valid @RequestBody UserDto userDto) {
@@ -84,6 +95,22 @@ public class UserController {
 			@RequestParam(defaultValue = AppConstants.USER_SORT_BY, required = false) String sortBy) {
 		UserResponse userResponse = userService.getAllEmployees(pageNumber, pageSize, sortBy);
 		return new ResponseEntity<>(userResponse, HttpStatus.OK);
+	}
+	
+	@PostMapping("/upload/image/{userId}")
+	public ResponseEntity<UserDto> uploadImage(@PathVariable Integer userId, @RequestParam MultipartFile image) throws IOException {
+		UserDto userDto = userService.getUserById(userId);
+		String fileName = fileService.uploadImage(AppConstants.USER_IMAGE_PATH, image);
+		userDto.setUserImage(fileName);
+		UserDto updateUser = userService.updateProfile(userDto, userId);
+		return new ResponseEntity<>(updateUser, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/image/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
+	public void getImageResource(@PathVariable String imageName, HttpServletResponse response) throws IOException {
+		InputStream imageResource = fileService.getImageResource(AppConstants.USER_IMAGE_PATH, imageName);
+		response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+		StreamUtils.copy(imageResource, response.getOutputStream());
 	}
 
 }

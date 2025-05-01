@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -51,5 +52,8 @@ public class Car {
 	
 	@OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
 	private List<CarVariant> carVariants;
+	
+	@OneToMany(mappedBy = "car", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Booking> bookings;
 
 }

@@ -69,4 +69,11 @@ public class CarVariantServiceImpl implements CarVariantService {
 		carVariantRepo.delete(carVariant);
 	}
 
+	@Override
+	public void clearCarVariants() {
+		List<CarVariant> carVariants = carVariantRepo.clearVariants();
+		carVariants.forEach(carVariant -> carVariant.setStatus("Active"));
+		carVariantRepo.saveAll(carVariants);
+	}
+
 }

@@ -87,6 +87,7 @@ public class UserServiceImpl implements UserService {
 		user.setAddress(userDto.getAddress());
 		user.setPincode(userDto.getPincode());
 		user.setPassword(userDto.getPassword());
+		user.setUserImage(userDto.getUserImage());
 		User updatedUser = userRepo.save(user);
 		return modelMapper.map(updatedUser, UserDto.class);
 	}

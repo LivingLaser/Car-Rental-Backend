@@ -108,7 +108,7 @@ public class CarController {
 	@PostMapping("/upload/image/{modelId}")
 	public ResponseEntity<CarDto> uploadImage(@PathVariable Integer modelId, @RequestParam MultipartFile image) throws IOException {
 		CarDto carDto = carService.getModelById(modelId);
-		String fileName = fileService.uploadImage(AppConstants.PATH, image);
+		String fileName = fileService.uploadImage(AppConstants.CAR_IMAGE_PATH, image);
 		carDto.setModelImage(fileName);
 		CarDto updatedModel = carService.updateModel(carDto, modelId);
 		return new ResponseEntity<>(updatedModel, HttpStatus.OK);
@@ -116,7 +116,7 @@ public class CarController {
 	
 	@GetMapping(value = "/image/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
 	public void getImageResource(@PathVariable String imageName, HttpServletResponse response) throws IOException {
-		InputStream imageResource = fileService.getImageResource(AppConstants.PATH, imageName);
+		InputStream imageResource = fileService.getImageResource(AppConstants.CAR_IMAGE_PATH, imageName);
 		response.setContentType(MediaType.IMAGE_JPEG_VALUE);
 		StreamUtils.copy(imageResource, response.getOutputStream());
 	}

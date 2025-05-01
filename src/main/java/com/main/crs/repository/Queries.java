@@ -12,5 +12,6 @@ public interface Queries {
 	String MIN_BOOT_SPACE = "select IFNULL(MIN(CAST(boot_space as UNSIGNED)), 0) from car";
 	String MAX_RENT_PRICE = "select IFNULL(MAX(CAST(rent_price as UNSIGNED)), 0) from car";
 	String MIN_RENT_PRICE = "select IFNULL(MIN(CAST(rent_price as UNSIGNED)), 0) from car";
+	String CLEAR_VARIANTS = "SELECT c FROM CarVariant c JOIN c.bookings b WHERE c.status = 'Booked' AND b.dropDate < CURRENT_TIMESTAMP";
 
 }

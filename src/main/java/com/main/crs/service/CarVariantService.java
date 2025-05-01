@@ -11,5 +11,6 @@ public interface CarVariantService {
 	CarVariantDto updateVariant(CarVariantDto carVariantDto, String registration);
 	List<CarVariantDto> getVariantsByCar(Integer modelId);
 	void removeCarVariant(String registration);
+	void clearCarVariants();
 
 }

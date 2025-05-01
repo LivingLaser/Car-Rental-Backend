@@ -6,11 +6,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class UserDto {
 	
 	private Integer userId;
@@ -38,6 +44,9 @@ public class UserDto {
 	@NotBlank(message = "Password must not be empty")
 	@Size(min = 6, max = 13, message = "Password must be between 6-13 characters")
 	private String password;
+	
+	@Builder.Default
+	private String userImage = "default.jpg";
 	private RoleDto role;
 	
 	@JsonIgnore
