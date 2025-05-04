@@ -2,6 +2,7 @@ package com.main.crs.dto;
 
 import java.util.Date;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,14 @@ public class BookingDto {
 	
 	@Builder.Default
 	private Date bookingDateTime = new Date();
+	
+	@NotBlank(message = "Enter Pickup Location")
+	@Pattern(regexp = "^(?!.*<[^>]+>).*$", message = "Enter a Valid Pickup Location")
+	private String pickLocation;
+	
+	@NotBlank(message = "Enter Drop-off Location")
+	@Pattern(regexp = "^(?!.*<[^>]+>).*$", message = "Enter a Valid Drop-off Location")
+	private String dropLocation;
 	
 	@NotNull(message = "Select Pickup Date")
 	private Date pickDate;

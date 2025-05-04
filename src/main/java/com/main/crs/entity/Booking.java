@@ -26,6 +26,12 @@ public class Booking {
 	@Column(name = "booking_date_time")
 	private Date bookingDateTime;
 	
+	@Column(name = "pick_location")
+	private String pickLocation;
+	
+	@Column(name = "drop_location")
+	private String dropLocation;
+	
 	@Column(name = "pick_date")
 	private Date pickDate;
 	
