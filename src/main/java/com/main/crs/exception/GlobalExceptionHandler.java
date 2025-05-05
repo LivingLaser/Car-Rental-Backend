@@ -41,6 +41,11 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(new ApiResponse("Wrong Username or Password", false), HttpStatus.NOT_FOUND);
 	}
 	
+	@ExceptionHandler(NullPointerException.class)
+	public ResponseEntity<ApiResponse> handleNullPointerException() {
+		return new ResponseEntity<>(new ApiResponse("Incorrect Password", false), HttpStatus.NOT_FOUND);
+	}
+	
 	@ExceptionHandler(SQLIntegrityConstraintViolationException.class)
 	public ResponseEntity<ApiResponse> handleSQLIntegrityConstraintViolationException(SQLIntegrityConstraintViolationException e) {
 		String message = e.getMessage();
