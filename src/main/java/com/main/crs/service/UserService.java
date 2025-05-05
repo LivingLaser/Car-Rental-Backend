@@ -12,6 +12,7 @@ public interface UserService {
 	UserDto loginAdmin(String email, String password);
 	UserDto getUserById(Integer userId);
 	UserDto updateProfile(UserDto userDto, Integer userId);
+	UserDto changePassword(String email, String password, String newPassword);
 	UserResponse getAllUsers(Integer pageNumber, Integer pageSize, String sortBy);
 	UserResponse getAllEmployees(Integer pageNumber, Integer pageSize, String sortBy);
 

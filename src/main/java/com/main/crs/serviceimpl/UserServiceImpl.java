@@ -86,8 +86,16 @@ public class UserServiceImpl implements UserService {
 		user.setPhone(userDto.getPhone());
 		user.setAddress(userDto.getAddress());
 		user.setPincode(userDto.getPincode());
-		user.setPassword(userDto.getPassword());
 		user.setUserImage(userDto.getUserImage());
+		User updatedUser = userRepo.save(user);
+		return modelMapper.map(updatedUser, UserDto.class);
+	}
+
+	@Override
+	public UserDto changePassword(String email, String password, String newPassword) {
+		Role role = roleRepo.findById(AppConstants.USER_NORMAL).orElse(null);
+		User user = userRepo.findByEmailAndPasswordAndRole(email, password, role);
+		user.setPassword(newPassword);
 		User updatedUser = userRepo.save(user);
 		return modelMapper.map(updatedUser, UserDto.class);
 	}

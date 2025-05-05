@@ -79,6 +79,12 @@ public class UserController {
 		return new ResponseEntity<>(updatedUser, HttpStatus.OK);
 	}
 	
+	@PutMapping("/change_password")
+	public ResponseEntity<UserDto> changePassword(@RequestParam String email, @RequestParam String password, @RequestParam String newPassword) {
+		UserDto updatedUser = userService.changePassword(email, password, newPassword);
+		return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+	}
+	
 	@GetMapping("/")
 	public ResponseEntity<UserResponse> getAllUsers(
 			@RequestParam(defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
