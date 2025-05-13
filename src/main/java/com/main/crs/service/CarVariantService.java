@@ -6,10 +6,11 @@ import com.main.crs.dto.CarVariantDto;
 
 public interface CarVariantService {
 	
-	CarVariantDto addCarVariant(CarVariantDto carVariantDto, Integer modelId);
+	CarVariantDto addCarVariant(CarVariantDto carVariantDto, Integer modelId, Integer userId);
 	CarVariantDto getVariantById(String registration);
 	CarVariantDto updateVariant(CarVariantDto carVariantDto, String registration);
 	List<CarVariantDto> getVariantsByCar(Integer modelId);
+	List<CarVariantDto> getVariantsByOwner(Integer userId);
 	void removeCarVariant(String registration);
 	void clearCarVariants();
 

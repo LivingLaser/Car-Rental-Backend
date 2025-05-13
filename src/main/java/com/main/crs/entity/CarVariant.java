@@ -24,15 +24,6 @@ public class CarVariant {
 	@Id
 	private String registration;
 	
-	@Column(name = "owner_name")
-	private String ownerName;
-	
-	@Column(name = "owner_phone")
-	private String ownerPhone;
-	
-	@Column(name = "owner_address")
-	private String ownerAddress;
-	
 	@Column(name = "insurance_validity")
 	private Date insuranceValidity;
 	
@@ -43,9 +34,13 @@ public class CarVariant {
 	private String modelColor;
 	private String status;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "model_id")
 	private Car car;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
+	private User user;
 	
 	@OneToMany(mappedBy = "carVariant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Booking> bookings;

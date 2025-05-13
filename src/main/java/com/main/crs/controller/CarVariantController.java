@@ -27,9 +27,9 @@ public class CarVariantController {
 	@Autowired
 	CarVariantService carVariantService;
 	
-	@PostMapping("/{modelId}")
-	public ResponseEntity<CarVariantDto> addCarVariant(@Valid @RequestBody CarVariantDto carVariantDto, @PathVariable Integer modelId) {
-		CarVariantDto createdVariant = carVariantService.addCarVariant(carVariantDto, modelId);
+	@PostMapping("/car/{modelId}/owner/{userId}")
+	public ResponseEntity<CarVariantDto> addCarVariant(@Valid @RequestBody CarVariantDto carVariantDto, @PathVariable Integer modelId, @PathVariable Integer userId) {
+		CarVariantDto createdVariant = carVariantService.addCarVariant(carVariantDto, modelId, userId);
 		return new ResponseEntity<>(createdVariant, HttpStatus.CREATED);
 	}
 	
@@ -48,6 +48,12 @@ public class CarVariantController {
 	@GetMapping("/car/{modelId}")
 	public ResponseEntity<List<CarVariantDto>> getVariantsByModel(@PathVariable Integer modelId) {
 		List<CarVariantDto> carVariantDtos = carVariantService.getVariantsByCar(modelId);
+		return new ResponseEntity<>(carVariantDtos, HttpStatus.OK);
+	}
+	
+	@GetMapping("/owner/{userId}")
+	public ResponseEntity<List<CarVariantDto>> getVariantsByOwner(@PathVariable Integer userId) {
+		List<CarVariantDto> carVariantDtos = carVariantService.getVariantsByOwner(userId);
 		return new ResponseEntity<>(carVariantDtos, HttpStatus.OK);
 	}
 	

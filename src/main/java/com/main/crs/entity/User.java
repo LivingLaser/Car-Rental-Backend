@@ -41,6 +41,9 @@ public class User {
 	private Role role;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<CarVariant> carVariants;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Booking> bookings;
 
 }

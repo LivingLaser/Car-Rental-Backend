@@ -50,8 +50,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDto registerEmployee(UserDto userDto) {
-		Role role = roleRepo.findById(AppConstants.USER_EMPLOYEE).orElse(null);
+	public UserDto registerOwner(UserDto userDto) {
+		Role role = roleRepo.findById(AppConstants.USER_OWNER).orElse(null);
 		User employee = modelMapper.map(userDto, User.class);
 		employee.setRole(role);
 		User savedEmployee = userRepo.save(employee);
@@ -59,8 +59,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDto loginEmployee(String email, String password) {
-		Role role = roleRepo.findById(AppConstants.USER_EMPLOYEE).orElse(null);
+	public UserDto loginOwner(String email, String password) {
+		Role role = roleRepo.findById(AppConstants.USER_OWNER).orElse(null);
 		User employee = userRepo.findByEmailAndPasswordAndRole(email, password, role);
 		return modelMapper.map(employee, UserDto.class);
 	}
@@ -121,8 +121,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserResponse getAllEmployees(Integer pageNumber, Integer pageSize, String sortBy) {
-		Role role = roleRepo.findById(AppConstants.USER_EMPLOYEE).orElse(null);
+	public UserResponse getAllOwners(Integer pageNumber, Integer pageSize, String sortBy) {
+		Role role = roleRepo.findById(AppConstants.USER_OWNER).orElse(null);
 		Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
 		Page<User> pages = userRepo.findByRole(role, pageable);
 		

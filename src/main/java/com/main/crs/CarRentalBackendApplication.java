@@ -29,9 +29,9 @@ public class CarRentalBackendApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		Role adminRole = new Role(AppConstants.USER_ADMIN, "ROLE_ADMIN");
-		Role employeeRole = new Role(AppConstants.USER_EMPLOYEE, "ROLE_EMPLOYEE");
+		Role ownerRole = new Role(AppConstants.USER_OWNER, "ROLE_OWNER");
 		Role userRole = new Role(AppConstants.USER_NORMAL, "ROLE_USER");
-		List<Role> roles = List.of(adminRole, employeeRole, userRole);
+		List<Role> roles = List.of(adminRole, ownerRole, userRole);
 		roleRepo.saveAll(roles);
 		
 		User admin = new User();

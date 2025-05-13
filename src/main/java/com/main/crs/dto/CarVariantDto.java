@@ -22,18 +22,6 @@ public class CarVariantDto {
 	@Pattern(regexp = "^[A-Z]{2}\\d{2}[A-Z]{1,2}\\d{4}$", message = "Enter Valid Registration No.")
 	private String registration;
 	
-	@NotBlank(message = "Enter Owner Name")
-	@Pattern(regexp = "^[A-Za-z\\s]+$", message = "Enter Valid Name")
-	private String ownerName;
-	
-	@NotBlank(message = "Enter Owner Phone No.")
-	@Pattern(regexp = "[6-9]{1}[0-9]{9}", message = "Enter Valid Phone No.")
-	private String ownerPhone;
-	
-	@NotBlank(message = "Enter Address")
-	@Pattern(regexp = "^(?!.*<[^>]+>).*$", message = "Enter Valid Address")
-	private String ownerAddress;
-	
 	@NotNull(message = "Enter Insurance Validity")
 	private Date insuranceValidity;
 	
@@ -45,5 +33,7 @@ public class CarVariantDto {
 	
 	@Builder.Default
 	private String status = "Active";
+	private CarDto car;
+	private UserDto user;
 
 }

@@ -50,14 +50,14 @@ public class UserController {
 	}
 	
 	@PostMapping("/emp_register")
-	public ResponseEntity<UserDto> registerEmployee(@Valid @RequestBody UserDto userDto) {
-		UserDto createdEmployee = userService.registerEmployee(userDto);
+	public ResponseEntity<UserDto> registerOwner(@Valid @RequestBody UserDto userDto) {
+		UserDto createdEmployee = userService.registerOwner(userDto);
 		return new ResponseEntity<>(createdEmployee, HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/emp_login")
-	public ResponseEntity<UserDto> loginEmployee(@RequestParam String email, @RequestParam String password) {
-		UserDto loggedEmployee = userService.loginEmployee(email, password);
+	public ResponseEntity<UserDto> loginOwner(@RequestParam String email, @RequestParam String password) {
+		UserDto loggedEmployee = userService.loginOwner(email, password);
 		return new ResponseEntity<>(loggedEmployee, HttpStatus.OK);
 	}
 	
@@ -95,11 +95,11 @@ public class UserController {
 	}
 	
 	@GetMapping("/emp")
-	public ResponseEntity<UserResponse> getAllEmployees(
+	public ResponseEntity<UserResponse> getAllOwners(
 			@RequestParam(defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
 			@RequestParam(defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,
 			@RequestParam(defaultValue = AppConstants.USER_SORT_BY, required = false) String sortBy) {
-		UserResponse userResponse = userService.getAllEmployees(pageNumber, pageSize, sortBy);
+		UserResponse userResponse = userService.getAllOwners(pageNumber, pageSize, sortBy);
 		return new ResponseEntity<>(userResponse, HttpStatus.OK);
 	}
 	
