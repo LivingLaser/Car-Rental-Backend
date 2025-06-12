@@ -43,12 +43,12 @@ public class Booking {
 	private String bookingStatus;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "user_id")
-	private User user;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "model_id")
 	private Car car;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
+	private User user;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "registration")
