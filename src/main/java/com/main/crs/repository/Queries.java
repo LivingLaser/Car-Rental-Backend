@@ -13,5 +13,10 @@ public interface Queries {
 	String MAX_RENT_PRICE = "select IFNULL(MAX(CAST(rent_price as UNSIGNED)), 0) from car";
 	String MIN_RENT_PRICE = "select IFNULL(MIN(CAST(rent_price as UNSIGNED)), 0) from car";
 	String CLEAR_VARIANTS = "SELECT c FROM CarVariant c JOIN c.bookings b WHERE c.status = 'Booked' AND b.dropDate < CURRENT_TIMESTAMP";
+	String USER_COUNT = "SELECT COUNT(u) FROM User u WHERE u.role.roleId = :roleId";
+	String TOTAL_REVENUE = "select IFNULL(SUM(amount), 0) from booking";
+	String BOOKING_COUNT = "SELECT COUNT(b) FROM Booking b";
+	String COUNT_VARIANTS = "SELECT COUNT(c) FROM CarVariant c WHERE c.status = :status";
+	String BOOKING_STATUS_COUNT = "SELECT COUNT(b) FROM Booking b WHERE b.bookingStatus = :bookingStatus";
 
 }

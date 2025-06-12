@@ -3,6 +3,7 @@ package com.main.crs.service;
 import java.util.List;
 
 import com.main.crs.dto.BookingDto;
+import com.main.crs.payload.AdminDashboard;
 import com.main.crs.payload.BookingResponse;
 
 public interface BookingService {
@@ -13,5 +14,6 @@ public interface BookingService {
 	BookingResponse getBookingsByUser(Integer userId, Integer pageNumber, Integer pageSize);
 	List<BookingDto> getBookingsByStatus(String bookingStatus);
 	BookingResponse getAllBookings(Integer pageNumber, Integer pageSize);
+	AdminDashboard getDashboardData();
 
 }

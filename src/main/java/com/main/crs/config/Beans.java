@@ -21,7 +21,7 @@ public class Beans {
 	@Bean
 	FilterRegistrationBean<CorsFilter> corsFilter() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
-		corsConfiguration.setAllowedOrigins(List.of("http://localhost:5173"));
+		corsConfiguration.setAllowedOriginPatterns(List.of("http://localhost:*"));
 		corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 		corsConfiguration.setAllowedHeaders(List.of("*"));
 		corsConfiguration.setAllowCredentials(true);

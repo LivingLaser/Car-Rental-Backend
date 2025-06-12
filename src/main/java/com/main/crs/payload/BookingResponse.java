@@ -13,9 +13,6 @@ public class BookingResponse {
 	
 	private List<BookingDto> pageContent;
 	private Integer pageNumber;
-	private Integer pageSize;
 	private Integer totalPages;
-	private Boolean isFirstPage;
-	private Boolean isLastPage;
 
 }

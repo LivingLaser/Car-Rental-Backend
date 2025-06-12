@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.main.crs.config.AppConstants;
 import com.main.crs.dto.BookingDto;
+import com.main.crs.payload.AdminDashboard;
 import com.main.crs.payload.BookingResponse;
 import com.main.crs.service.BookingService;
 
@@ -66,6 +67,12 @@ public class BookingController {
 			@RequestParam(defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize) {
 		BookingResponse bookingResponse = bookingService.getAllBookings(pageNumber, pageSize);
 		return new ResponseEntity<>(bookingResponse, HttpStatus.OK);
+	}
+	
+	@GetMapping("/dashboard")
+	public ResponseEntity<AdminDashboard> getDashboardData() {
+		AdminDashboard adminDashboard = bookingService.getDashboardData();
+		return new ResponseEntity<>(adminDashboard, HttpStatus.OK);
 	}
 
 }

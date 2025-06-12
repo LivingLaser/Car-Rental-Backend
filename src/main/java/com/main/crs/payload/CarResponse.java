@@ -13,9 +13,6 @@ public class CarResponse {
 	
 	private List<CarDto> pageContent;
 	private Integer pageNumber;
-	private Integer pageSize;
 	private Integer totalPages;
-	private Boolean isFirstPage;
-	private Boolean isLastPage;
 
 }

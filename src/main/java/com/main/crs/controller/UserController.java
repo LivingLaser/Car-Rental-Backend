@@ -49,13 +49,13 @@ public class UserController {
 		return new ResponseEntity<>(loggedUser, HttpStatus.OK);
 	}
 	
-	@PostMapping("/emp_register")
+	@PostMapping("/owner_register")
 	public ResponseEntity<UserDto> registerOwner(@Valid @RequestBody UserDto userDto) {
 		UserDto createdEmployee = userService.registerOwner(userDto);
 		return new ResponseEntity<>(createdEmployee, HttpStatus.CREATED);
 	}
 	
-	@PostMapping("/emp_login")
+	@PostMapping("/owner_login")
 	public ResponseEntity<UserDto> loginOwner(@RequestParam String email, @RequestParam String password) {
 		UserDto loggedEmployee = userService.loginOwner(email, password);
 		return new ResponseEntity<>(loggedEmployee, HttpStatus.OK);

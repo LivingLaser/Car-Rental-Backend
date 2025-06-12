@@ -39,6 +39,7 @@ public class CarRentalBackendApplication implements CommandLineRunner {
 		admin.setName("ADMIN");
 		admin.setEmail("admin@crs.com");
 		admin.setPassword("nimda");
+		admin.setUserImage("default.jpg");
 		admin.setRole(adminRole);
 		userRepo.save(admin);
 	}

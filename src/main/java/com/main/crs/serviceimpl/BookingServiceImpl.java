@@ -10,12 +10,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.main.crs.config.AppConstants;
 import com.main.crs.dto.BookingDto;
 import com.main.crs.entity.Booking;
 import com.main.crs.entity.Car;
 import com.main.crs.entity.CarVariant;
 import com.main.crs.entity.User;
 import com.main.crs.exception.ResourceNotFoundException;
+import com.main.crs.payload.AdminDashboard;
 import com.main.crs.payload.BookingResponse;
 import com.main.crs.repository.BookingRepo;
 import com.main.crs.repository.CarRepo;
@@ -84,10 +86,7 @@ public class BookingServiceImpl implements BookingService {
 		BookingResponse bookingResponse = new BookingResponse();
 		bookingResponse.setPageContent(bookingDtos);
 		bookingResponse.setPageNumber(pages.getNumber());
-		bookingResponse.setPageSize(pages.getSize());
 		bookingResponse.setTotalPages(pages.getTotalPages());
-		bookingResponse.setIsFirstPage(pages.isFirst());
-		bookingResponse.setIsLastPage(pages.isLast());
 		
 		return bookingResponse;
 	}
@@ -110,12 +109,24 @@ public class BookingServiceImpl implements BookingService {
 		BookingResponse bookingResponse = new BookingResponse();
 		bookingResponse.setPageContent(bookingDtos);
 		bookingResponse.setPageNumber(pages.getNumber());
-		bookingResponse.setPageSize(pages.getSize());
 		bookingResponse.setTotalPages(pages.getTotalPages());
-		bookingResponse.setIsFirstPage(pages.isFirst());
-		bookingResponse.setIsLastPage(pages.isLast());
 		
 		return bookingResponse;
+	}
+
+	@Override
+	public AdminDashboard getDashboardData() {
+		AdminDashboard adminDashboard = new AdminDashboard();
+		adminDashboard.setTotalUsers(userRepo.countUsersByRole(AppConstants.USER_NORMAL));
+		adminDashboard.setTotalOwners(userRepo.countUsersByRole(AppConstants.USER_OWNER));
+		adminDashboard.setTotalRevenue(bookingRepo.totalRevenue());
+		adminDashboard.setTotalBookings(bookingRepo.totalBookings());
+		adminDashboard.setActiveCars(carVariantRepo.countVariantsByStatus("Active"));
+		adminDashboard.setBookedCars(carVariantRepo.countVariantsByStatus("Booked"));
+		adminDashboard.setConfirmedBookings(bookingRepo.countByBookingStatus("Confirmed"));
+		adminDashboard.setCanceledBookings(bookingRepo.countByBookingStatus("Canceled"));
+		adminDashboard.setDeclinedBookings(bookingRepo.countByBookingStatus("Declined"));
+		return adminDashboard;
 	}
 
 }

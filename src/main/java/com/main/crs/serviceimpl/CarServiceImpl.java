@@ -77,10 +77,7 @@ public class CarServiceImpl implements CarService {
 		CarResponse carResponse = new CarResponse();
 		carResponse.setPageContent(carDtos);
 		carResponse.setPageNumber(pages.getNumber());
-		carResponse.setPageSize(pages.getSize());
 		carResponse.setTotalPages(pages.getTotalPages());
-		carResponse.setIsFirstPage(pages.isFirst());
-		carResponse.setIsLastPage(pages.isLast());
 		
 		return carResponse;
 	}
@@ -96,10 +93,7 @@ public class CarServiceImpl implements CarService {
 		CarResponse carResponse = new CarResponse();
 		carResponse.setPageContent(carDtos);
 		carResponse.setPageNumber(pages.getNumber());
-		carResponse.setPageSize(pages.getSize());
 		carResponse.setTotalPages(pages.getTotalPages());
-		carResponse.setIsFirstPage(pages.isFirst());
-		carResponse.setIsLastPage(pages.isLast());
 		
 		return carResponse;
 	}
@@ -115,10 +109,7 @@ public class CarServiceImpl implements CarService {
 		CarResponse carResponse = new CarResponse();
 		carResponse.setPageContent(carDtos);
 		carResponse.setPageNumber(pages.getNumber());
-		carResponse.setPageSize(pages.getSize());
 		carResponse.setTotalPages(pages.getTotalPages());
-		carResponse.setIsFirstPage(pages.isFirst());
-		carResponse.setIsLastPage(pages.isLast());
 		
 		return carResponse;
 	}

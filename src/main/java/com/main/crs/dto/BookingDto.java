@@ -41,7 +41,7 @@ public class BookingDto {
 	private String amount;
 	
 	@Builder.Default
-	private String bookingStatus = "Pending Approval";
+	private String bookingStatus = "Pending";
 	private UserDto user;
 	private CarDto car;
 	private CarVariantDto carVariant;

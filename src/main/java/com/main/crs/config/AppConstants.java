@@ -13,6 +13,6 @@ public interface AppConstants {
 	String CAR_SORT_BY = "modelName";
 	String CAR_SORT_BY_NATIVE = "model_name";
 	String USER_IMAGE_PATH = new File("src/main/resources/static/images/user/").getAbsolutePath();
-	String CAR_IMAGE_PATH = new File("src/main/resources/static/images/car/").getAbsolutePath();
+	String CAR_IMAGE_PATH = new File("src/main/resources/static/images/cars/").getAbsolutePath();
 
 }
