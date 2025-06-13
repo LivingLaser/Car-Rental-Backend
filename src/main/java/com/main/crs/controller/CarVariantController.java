@@ -63,6 +63,12 @@ public class CarVariantController {
 		return new ResponseEntity<>(new ApiResponse("Variant Removed", true), HttpStatus.OK);
 	}
 	
+	@GetMapping("/car/{modelId}/active")
+	public ResponseEntity<List<CarVariantDto>> getActiveVariants(@PathVariable Integer modelId) {
+		List<CarVariantDto> carVariantDtos = carVariantService.getActiveVariants(modelId);
+		return new ResponseEntity<>(carVariantDtos, HttpStatus.OK);
+	}
+	
 	@GetMapping("/clear")
 	public ResponseEntity<ApiResponse> clearCarVariants() {
 		carVariantService.clearCarVariants();

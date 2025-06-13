@@ -82,6 +82,14 @@ public class CarVariantServiceImpl implements CarVariantService {
 	}
 
 	@Override
+	public List<CarVariantDto> getActiveVariants(Integer modelId) {
+		Car car = carRepo.findById(modelId).orElseThrow(() -> new ResourceNotFoundException("Car", "Model ID", modelId));
+		List<CarVariant> carVariants = carVariantRepo.findByCarAndStatus(car, "Active");
+		List<CarVariantDto> carVariantDtos = carVariants.stream().map(carVariant -> modelMapper.map(carVariant, CarVariantDto.class)).collect(Collectors.toList());
+		return carVariantDtos;
+	}
+
+	@Override
 	public void clearCarVariants() {
 		List<CarVariant> carVariants = carVariantRepo.clearVariants();
 		carVariants.forEach(carVariant -> carVariant.setStatus("Active"));

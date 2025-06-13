@@ -14,6 +14,7 @@ public interface CarVariantRepo extends JpaRepository<CarVariant, String> {
 	
 	List<CarVariant> findByCar(Car car);
 	List<CarVariant> findByUser(User user);
+	List<CarVariant> findByCarAndStatus(Car car, String status);
 	
 	@Query(value = Queries.CLEAR_VARIANTS)
 	List<CarVariant> clearVariants();
